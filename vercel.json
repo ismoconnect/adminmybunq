@@ -5,18 +5,18 @@
       "src": "frontend/amcb-admin/package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "frontend/amcb-admin/dist"
+        "distDir": "dist"
       }
     }
   ],
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/frontend/amcb-admin/assets/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/frontend/amcb-admin/index.html"
+      "dest": "/index.html"
     }
   ],
   "env": {
