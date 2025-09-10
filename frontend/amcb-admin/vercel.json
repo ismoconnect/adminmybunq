@@ -1,21 +1,8 @@
 {
-  "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "framework": "vite",
   "rewrites": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
     }
-  ],
-  "env": {
-    "VITE_FIREBASE_API_KEY": "AIzaSyCwGBTeIZDPGJqYe4mtP-Sh4OIlSWMHQXQ",
-    "VITE_FIREBASE_AUTH_DOMAIN": "monbunq-e26ba.firebaseapp.com",
-    "VITE_FIREBASE_PROJECT_ID": "monbunq-e26ba",
-    "VITE_FIREBASE_STORAGE_BUCKET": "monbunq-e26ba.firebasestorage.app",
-    "VITE_FIREBASE_MESSAGING_SENDER_ID": "830779729809",
-    "VITE_FIREBASE_APP_ID": "1:830779729809:web:40f00e2f5c8e4182fc9c30"
-  }
+  ]
 }

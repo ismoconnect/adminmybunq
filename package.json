@@ -1,0 +1,13 @@
+{
+  "name": "amcb-admin-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "cd frontend/amcb-admin && npm run build",
+    "dev": "cd frontend/amcb-admin && npm run dev",
+    "install-deps": "cd frontend/amcb-admin && npm install"
+  },
+  "workspaces": [
+    "frontend/amcb-admin"
+  ]
+}
