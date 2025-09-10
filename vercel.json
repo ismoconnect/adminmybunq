@@ -1,13 +1,22 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "installCommand": "npm install",
-  "framework": "vite",
-  "rewrites": [
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "frontend/amcb-admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "frontend/amcb-admin/dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/frontend/amcb-admin/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/frontend/amcb-admin/index.html"
     }
   ],
   "env": {
