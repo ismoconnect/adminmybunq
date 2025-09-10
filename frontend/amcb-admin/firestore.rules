@@ -1,0 +1,59 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Règles pour les utilisateurs - accès admin uniquement
+    match /users/{userId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les comptes bancaires
+    match /accounts/{accountId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les transactions
+    match /transactions/{transactionId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les RIBs
+    match /ribs/{ribId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour la facturation
+    match /billing/{billingId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les cartes
+    match /cards/{cardId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les budgets
+    match /budgets/{budgetId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les notifications
+    match /notifications/{notificationId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // Règles pour les chats de support
+    match /chats/{chatId} {
+      allow read, write: if request.auth != null;
+      
+      // Sous-collection messages
+      match /messages/{messageId} {
+        allow read, write: if request.auth != null;
+      }
+    }
+    
+    // Règles pour les statistiques du dashboard
+    match /dashboard/{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
