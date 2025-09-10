@@ -37,7 +37,7 @@ const CreateChatModal: React.FC<CreateChatModalProps> = ({ isOpen, onClose, onCh
         priority: formData.priority,
         subject: formData.subject,
         category: formData.category,
-        unreadCount: 0
+        // unreadCount: 0 // Retiré car pas dans le type Chat
       });
 
       // Si un message initial est fourni, l'envoyer

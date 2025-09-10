@@ -1,59 +1,77 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    // Fonction pour vérifier si l'utilisateur est admin
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/admins/$(request.auth.uid)) &&
+             get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.isActive == true;
+    }
+    
+    // Fonction pour vérifier les permissions admin
+    function hasAdminPermission(permission) {
+      return isAdmin() && 
+             get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.permissions[permission] == true;
+    }
+    
+    // Règles pour les administrateurs - accès restreint
+    match /admins/{adminId} {
+      allow read, write: if isAdmin();
+      allow create: if isAdmin() || request.auth != null; // Permettre la création du premier admin
+    }
+    
     // Règles pour les utilisateurs - accès admin uniquement
     match /users/{userId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les comptes bancaires
     match /accounts/{accountId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les transactions
     match /transactions/{transactionId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les RIBs
     match /ribs/{ribId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour la facturation
     match /billing/{billingId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les cartes
     match /cards/{cardId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les budgets
     match /budgets/{budgetId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les notifications
     match /notifications/{notificationId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
     
     // Règles pour les chats de support
     match /chats/{chatId} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
       
       // Sous-collection messages
       match /messages/{messageId} {
-        allow read, write: if request.auth != null;
+        allow read, write: if isAdmin();
       }
     }
     
     // Règles pour les statistiques du dashboard
     match /dashboard/{document=**} {
-      allow read, write: if request.auth != null;
+      allow read, write: if isAdmin();
     }
   }
 }
