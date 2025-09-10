@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "frontend/amcb-admin/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_FIREBASE_API_KEY": "AIzaSyCwGBTeIZDPGJqYe4mtP-Sh4OIlSWMHQXQ",
+    "VITE_FIREBASE_AUTH_DOMAIN": "monbunq-e26ba.firebaseapp.com",
+    "VITE_FIREBASE_PROJECT_ID": "monbunq-e26ba",
+    "VITE_FIREBASE_STORAGE_BUCKET": "monbunq-e26ba.firebasestorage.app",
+    "VITE_FIREBASE_MESSAGING_SENDER_ID": "830779729809",
+    "VITE_FIREBASE_APP_ID": "1:830779729809:web:40f00e2f5c8e4182fc9c30"
+  }
+}
